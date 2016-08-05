@@ -1,0 +1,117 @@
+Description: Since rescue,backburner,que,que-classic & suckerpuch are not in debian archive yet, disabling part of testcases that using it.
+Author: Abhijith PA <abhijith@openmailbox.org>
+Last-Update: <2016-06-11>
+
+--- ruby-devise-async-0.10.2.orig/test/devise/async/backend_test.rb
++++ ruby-devise-async-0.10.2/test/devise/async/backend_test.rb
+@@ -3,22 +3,22 @@ require "test_helper"
+ module Devise
+   module Async
+     describe "Backend" do
+-      it "gives resque as the backend" do
++=begin      it "gives resque as the backend" do
+         Backend.for(:resque).must_equal Backend::Resque
+       end
+-
++=end
+       it "gives sidekiq as the backend" do
+         Backend.for(:sidekiq).must_equal Backend::Sidekiq
+       end
+-
++=begin
+       it "gives backburner as the backend" do
+         Backend.for(:backburner).must_equal Backend::Backburner
+       end
+-
++=end
+       it "gives delayed job as the backend" do
+         Backend.for(:delayed_job).must_equal Backend::DelayedJob
+       end
+-
++=begin
+       it "gives queue classic as the backend" do
+         Backend.for(:queue_classic).must_equal Backend::QueueClassic
+       end
+@@ -26,7 +26,7 @@ module Devise
+       it "gives sucker punch as the backend" do
+         Backend.for(:sucker_punch).must_equal Backend::SuckerPunch
+       end
+-
++=end
+       it "alerts about unsupported backend" do
+         assert_raises ArgumentError do
+           Backend.for(:unsupported_backend)
+--- ruby-devise-async-0.10.2.orig/test/devise/async/worker_test.rb
++++ ruby-devise-async-0.10.2/test/devise/async/worker_test.rb
+@@ -3,13 +3,13 @@ require "test_helper"
+ module Devise
+   module Async
+     describe "Worker" do
+-      it "enqueues job using the resque backend" do
++=begin      it "enqueues job using the resque backend" do
+         Devise::Async.backend = :resque
+ 
+         Backend::Resque.expects(:enqueue).with(:mailer_method, "User", 123, {})
+         Worker.enqueue(:mailer_method, "User", 123, {})
+       end
+-
++=end
+       it "enqueues job using the sidekiq backend" do
+         Devise::Async.backend = :sidekiq
+ 
+@@ -17,13 +17,13 @@ module Devise
+         Worker.enqueue(:mailer_method, "User", 123, {})
+       end
+ 
+-      it "enqueues job using the backburner backend" do
++=begin      it "enqueues job using the backburner backend" do
+         Devise::Async.backend = :backburner
+ 
+         Backend::Backburner.expects(:enqueue).with(:mailer_method, "User", 123, {})
+         Worker.enqueue(:mailer_method, "User", 123, {})
+       end
+-
++=end
+       it "enqueues job using the delayed job backend" do
+         Devise::Async.backend = :delayed_job
+ 
+@@ -31,7 +31,7 @@ module Devise
+         Worker.enqueue(:mailer_method, "User", 123, {})
+       end
+ 
+-      it "enqueues job using the queue classic backend" do
++=begin      it "enqueues job using the queue classic backend" do
+         Devise::Async.backend = :queue_classic
+ 
+         Backend::QueueClassic.expects(:enqueue).with(:mailer_method, "User", 123, {})
+@@ -51,6 +51,7 @@ module Devise
+         Backend::Que.expects(:enqueue).with(:mailer_method, "User", 123, {})
+         Worker.enqueue(:mailer_method, "User", 123, {})
+       end
++=end
+     end
+   end
+ end
+--- ruby-devise-async-0.10.2.orig/test/test_helper.rb
++++ ruby-devise-async-0.10.2/test/test_helper.rb
+@@ -10,15 +10,15 @@ require "action_controller"
+ require "devise"
+ require "devise/async"
+ require "rails/all"
+-require "resque"
++#require "resque"
+ require "sidekiq"
+-require "backburner"
++#require "backburner"
+ require "delayed_job_active_record"
+ require "sidekiq/testing"
+ require "torquebox-no-op"
+-require "sucker_punch/testing/inline"
+-require "que"
+-require "queue_classic"
++#require "sucker_punch/testing/inline"
++#require "que"
++#require "queue_classic"
+ 
+ require "support/rails_app"
+ require "support/test_helpers"

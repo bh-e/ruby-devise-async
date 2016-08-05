@@ -1,0 +1,23 @@
+ruby-devise-async (0.10.2-1) UNRELEASED; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Bump Standards-Version to 3.9.8
+  * Add following Build-Depends for enabling test 
+              +ruby-activerecord-3.2,
+              +ruby-actionmailer-3.2,
+              +ruby-actionpack-3.2,
+              +ruby-minitest,
+              +ruby-mocha,
+              +ruby-torquebox-no-op,
+              +ruby-sidekiq,
+              +ruby-delayed-job-active-record,
+              +ruby-sqlite3 
+
+ -- Abhijith PA <abhijith@openmailbox.org>  Sat, 11 Jun 2016 23:33:37 +0530
+
+ruby-devise-async (0.9.0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #804416)
+
+ -- Pirate Praveen <praveen@debian.org>  Sun, 08 Nov 2015 15:16:25 +0530

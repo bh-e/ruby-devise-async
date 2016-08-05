@@ -1,0 +1,40 @@
+Source: ruby-devise-async
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Pirate Praveen <praveen@debian.org>
+Build-Depends: debhelper (>= 9~),
+               gem2deb,
+               ruby-devise (>= 3.2),
+               ruby-activerecord-3.2,
+               ruby-actionmailer-3.2,
+               ruby-actionpack-3.2,
+               ruby-minitest,
+               ruby-mocha,
+               ruby-torquebox-no-op,
+               ruby-sidekiq,
+               ruby-delayed-job-active-record,
+               ruby-sqlite3
+Standards-Version: 3.9.8
+Vcs-Git: https://anonscm.debian.org/git/pkg-ruby-extras/ruby-devise-async.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-ruby-extras/ruby-devise-async.git
+Homepage: https://github.com/mhfs/devise-async/
+Testsuite: autopkgtest-pkg-ruby
+XS-Ruby-Versions: all
+
+Package: ruby-devise-async
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ruby | ruby-interpreter,
+         ruby-devise (>= 3.2),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: easy way to configure Devise to send its emails asynchronously
+ Send Devise's emails in background using your preferred queuing backend.
+ .
+ Supported backends:
+  * Resque
+  * Sidekiq
+  * Delayed::Job
+  * QueueClassic
+  * Torquebox
