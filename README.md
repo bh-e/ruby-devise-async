@@ -4,16 +4,7 @@
 
 Devise Async provides an easy way to configure Devise to send its emails asynchronously using your preferred queuing backend.
 
-Supported backends:
-
-* Resque
-* Sidekiq
-* Delayed::Job
-* QueueClassic
-* Torquebox
-* Backburner
-* Que
-* SuckerPunch
+##This is an minimal version of devise-async
 
 ## Installation
 
